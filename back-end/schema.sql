@@ -61,11 +61,11 @@ CREATE TABLE related_products (
   FOREIGN KEY (related_id) references products(id)
 );
 
-ALTER TABLE product_features ADD INDEX product_id_index (product_id);
-ALTER TABLE product_styles ADD INDEX product_id_index (product_id);
-ALTER TABLE photos ADD INDEX product_id_index (product_id);
-ALTER TABLE skus ADD INDEX product_id_index (product_id);
-ALTER TABLE related_products ADD INDEX product_id_index (product_id);
+-- ALTER TABLE product_features ADD INDEX product_id_index (product_id);
+-- ALTER TABLE product_styles ADD INDEX product_id_index (product_id);
+-- ALTER TABLE photos ADD INDEX product_id_index (product_id);
+-- ALTER TABLE skus ADD INDEX product_id_index (product_id);
+-- ALTER TABLE related_products ADD INDEX product_id_index (product_id);
 
 LOAD DATA LOCAL INFILE '/Users/Brett/Downloads/product.csv'
 INTO TABLE products
