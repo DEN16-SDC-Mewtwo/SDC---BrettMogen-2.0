@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/DEN16-SDC-Mewtwo/SDC---BrettMogen-2.0#readme",
   "dependencies": {
+    "express": "^4.17.2",
     "mysql2": "^2.3.3"
   }
 }
