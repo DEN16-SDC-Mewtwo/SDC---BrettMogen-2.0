@@ -43,7 +43,7 @@ CREATE TABLE photos (
   FOREIGN KEY (style_id) references product_styles(id)
 );
 
-CREATE TABLE sku (
+CREATE TABLE skus (
   id int NOT NULL AUTO_INCREMENT,
   style_id INT,
   size varchar(9) NOT NULL,
@@ -63,10 +63,46 @@ CREATE TABLE related_products (
 
 -- ALTER TABLE questions ADD INDEX product_id_index (product_id);
 
-LOAD DATA LOCAL INFILE './product.csv'
+LOAD DATA LOCAL INFILE '/Users/Brett/Downloads/product.csv'
 INTO TABLE products
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
+LOAD DATA LOCAL INFILE '/Users/Brett/Downloads/features.csv'
+INTO TABLE product_features
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA LOCAL INFILE '/Users/Brett/Downloads/styles.csv'
+INTO TABLE product_styles
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA LOCAL INFILE '/Users/Brett/Downloads/photos.csv'
+INTO TABLE photos
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA LOCAL INFILE '/Users/Brett/Downloads/skus.csv'
+INTO TABLE skus
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA LOCAL INFILE '/Users/Brett/Downloads/related.csv'
+INTO TABLE related_products
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+--  mysql --local-infile=1 -u root < schema.sql
