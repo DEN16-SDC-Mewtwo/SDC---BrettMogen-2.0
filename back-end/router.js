@@ -25,20 +25,20 @@ router.get('/products/:product_id', (req, res) => {
     'slogan', slogan,
     'description', description,
     'category', category,
-    'default_value', default_value,
+    'default_price', default_price,
     'features',(SELECT JSON_ARRAYAGG(
       JSON_OBJECT(
       'feature', feature,
       'value', value))
       FROM product_features WHERE product_features.product_id = products.id)
   ))
-  AS results FROM products LIMIT ?;`;
+  AS results FROM products WHERE id=?;`;
 
   connection.query(queryString, [product_id], (err, result) => {
     if (err) {
       res.status(400).send('There was an error with your request.');
       console.log('Error:', err);
-    } else if (result) {
+    } else {
       res.status(200).send(result);
     }
   });
@@ -46,11 +46,19 @@ router.get('/products/:product_id', (req, res) => {
 
 router.get('/products/:product_id/styles', (req, res) => {
   let { product_id } = req.params;
+  product_id = product_id.slice(1);
 
   let queryString = `SELECT JSON_ARRAYAGG(JSON_OBJECT(
-    'product_id', product_id,
-
-  ))`
+    'product_id', id,
+    'results',(SELECT JSON_ARRAYAGG(
+      JSON_OBJECT(
+      'name', name,
+      'sale_price', sale_price
+      'original_price', original_price
+      'default', dflt))
+      FROM product_styles WHERE product_styles.product_id = products.id)
+  ))
+  AS results FROM products WHERE id=?;`;
 })
 
 module.exports.router = router;

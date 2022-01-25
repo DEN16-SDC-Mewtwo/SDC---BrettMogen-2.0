@@ -1,14 +1,15 @@
 var mysql2 = require('mysql2');
 
 var connection = mysql2.createConnection({
-  host: 'localhost',
+  host: '100.26.97.13',
   port: 3306,
-  user: 'root',
-  password: '',
+  user: 'foo',
+  password: 'password',
   database: 'overview'
 });
 
 connection.connect((err) => {
+  console.log(err);
   console.log('You have connected to the database!')
 });
 
